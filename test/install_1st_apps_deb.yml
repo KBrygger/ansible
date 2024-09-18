@@ -1,0 +1,20 @@
+---
+
+- hosts: test
+  become: true
+  tasks:
+
+  - name: update repository index
+    apt:
+      update_cache: yes
+    when: ansible_distribution in ["Debian","Ubuntu"]
+
+  - name: install initial packages
+    apt:
+      pkg:
+      - htop
+      - neofetch
+      - nano
+      - qemu-guest-agent
+      state: latest
+    when: ansible_distribution in ["Debian","Ubuntu"]
