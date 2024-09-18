@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: update repository index and dist-upgrade
+    apt:
+      update_cache: yes
+      upgrade: dist
+    when: ansible_distribution in ["Debian","Ubuntu"]
